@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class App {
@@ -37,7 +38,9 @@ public class App {
             preparedStatement.setString(1, "Test");
             preparedStatement.setString(2, "TestEmail");
             preparedStatement.setString(3, "TestWebpage");
-            preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));
+            java.util.Date startDate = new java.util.Date();
+            java.sql.Date sqlDate = new java.sql.Date(startDate.getTime());
+            preparedStatement.setDate(4, sqlDate);
             preparedStatement.setString(5, "TestSummary");
             preparedStatement.setString(6, "TestComment");
             preparedStatement.executeUpdate();
