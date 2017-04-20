@@ -19,10 +19,35 @@ public class DogsAndCats {
             connect = DriverManager
                 .getConnection("jdbc:mysql://localhost/pets?user=sqluser&password=sqluserpw&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST");
             statement = connect.createStatement();
+            
+            System.out.println("");
+            System.out.println("SELECT");
             resultSet = statement.executeQuery("SELECT * FROM cats");
             writeResultSet(resultSet);
             
+            System.out.println("");
+            System.out.println("SELECT");
+            resultSet = statement.executeQuery("SELECT * FROM dogs");
+            writeResultSet(resultSet);
+            
+            System.out.println("");
+            System.out.println("RIGHT OUTER JOIN:");
             resultSet = statement.executeQuery("SELECT * from dogs RIGHT OUTER JOIN cats on dogs.owner = cats.owner");
+            writeResultSet(resultSet);
+            
+            System.out.println("");
+            System.out.println("LEFT OUTER JOIN:");
+            resultSet = statement.executeQuery("SELECT * from dogs LEFT OUTER JOIN cats on dogs.owner = cats.owner");
+            writeResultSet(resultSet);
+            
+            System.out.println("");
+            System.out.println("UNION:");
+            resultSet = statement.executeQuery("select * from dogs LEFT OUTER JOIN cats on dogs.owner = cats.owner UNION select * from dogs RIGHT OUTER JOIN cats on dogs.owner = cats.owner;");
+            writeResultSet(resultSet);
+            
+            System.out.println("");
+            System.out.println("UNION ALL:");
+            resultSet = statement.executeQuery("select * from dogs LEFT OUTER JOIN cats on dogs.owner = cats.owner UNION ALL select * from dogs RIGHT OUTER JOIN cats on dogs.owner = cats.owner;");
             writeResultSet(resultSet);
 
         } catch (Exception e) {
@@ -40,10 +65,11 @@ public class DogsAndCats {
             String gender = resultSet.getString("gender");
             String owner = resultSet.getString("owner");
             String birth = resultSet.getString("birth");
-            System.out.println("name: " + name);
-            System.out.println("gender: " + gender);
-            System.out.println("owner: " + owner);
-            System.out.println("birth: " + birth);
+            System.out.println("");
+            System.out.println("Name: " + name);
+            System.out.println("Gender: " + gender);
+            System.out.println("Owner: " + owner);
+            System.out.println("Birth: " + birth);
         }
     }
 
