@@ -21,7 +21,7 @@ public class App {
             // Setup the connection with the DB
             connect = DriverManager
                 .getConnection("jdbc:mysql://localhost/feedback?user=sqluser&password=sqluserpw&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST");
-            
+
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
             // Result set get the result of the SQL query
@@ -68,7 +68,7 @@ public class App {
     }
 
     private void writeMetaData(ResultSet resultSet) throws SQLException {
-        //         Now get some metadata from the database
+        // Now get some metadata from the database
         // Result set get the result of the SQL query
 
         System.out.println("The columns in the table are: ");
@@ -98,7 +98,6 @@ public class App {
             System.out.println("Comment: " + comment);
         }
     }
-
     // You need to close the resultSet
     private void close() {
         try {
